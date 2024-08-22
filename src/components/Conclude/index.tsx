@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useDispatch, useSelector } from 'react-redux'
-import { Button } from '../RestaurantPage/styles'
 import * as S from './styles'
 import { RootReducer } from '../../store'
 
