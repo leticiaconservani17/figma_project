@@ -5,7 +5,15 @@
       "use": "@vercel/static-build",
       "config": { "distDir": "build" }
     },
-    { "src": "db.json", "use": "@vercel/node" }
+    {
+      "src": "db.json",
+      "use": "@vercel/node"
+    }
   ],
-  "routes": [{ "src": "/src/services/(.*)", "dest": "/db.json" }]
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/db.json"
+    }
+  ]
 }

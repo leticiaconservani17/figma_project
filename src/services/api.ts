@@ -38,7 +38,7 @@ type PurchaseResponse = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001'
+    baseUrl: '/api'
   }),
   endpoints: (builder) => ({
     getRestaurants: builder.query<Restaurant[], void>({
