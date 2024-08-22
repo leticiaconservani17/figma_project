@@ -10,10 +10,5 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/db.json"
-    }
-  ]
+  "routes": [{ "src": "/api/(.*)", "dest": "/db.json" }]
 }
