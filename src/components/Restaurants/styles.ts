@@ -7,6 +7,10 @@ export const ContentItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 1280px) {
+    margin-top: 30px;
+  }
 `
 
 export const HeadDiv = styled.div`
@@ -50,13 +54,26 @@ export const Item = styled.li`
 `
 
 export const HeadItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   ul {
     list-style: none;
     display: flex;
+    width: 100%;
     justify-content: space-between;
 
     li {
+      margin-right: 10px;
       display: flex;
+      align-items: center;
+    }
+
+    img {
+      margin-left: 5px;
+      width: 20px;
+      height: 20px;
     }
   }
 `
@@ -84,4 +101,5 @@ export const Button = styled.button`
   padding: 10px;
   align-self: flex-start;
   margin-top: auto;
+  cursor: pointer;
 `

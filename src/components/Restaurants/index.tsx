@@ -1,5 +1,6 @@
 import * as S from './styles'
 import star from '../../images/star.svg'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   title: string
@@ -7,9 +8,16 @@ type Props = {
   image: string
   infos: string[]
   rank: string
+  id: number
 }
 
-const Item = ({ title, description, infos, image, rank }: Props) => {
+const Item = ({ title, description, infos, image, rank, id }: Props) => {
+  const navigate = useNavigate()
+
+  const Navigation = () => {
+    navigate(`/restaurant/${id}`)
+  }
+
   return (
     <S.ContentItem>
       <S.HeadDiv>
@@ -33,7 +41,7 @@ const Item = ({ title, description, infos, image, rank }: Props) => {
           </ul>
         </S.HeadItem>
         <S.Description>{description}</S.Description>
-        <S.Button>
+        <S.Button onClick={Navigation}>
           {' '}
           <p> Saiba mais</p>
         </S.Button>

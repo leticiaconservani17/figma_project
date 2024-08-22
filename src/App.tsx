@@ -1,20 +1,21 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home'
 import GlobalStyle from './styles/global/styles'
-
-const rotas = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />
-  }
-])
+import RestaurantDetail from './Pages/RestaurantDetail'
+import { store } from './store'
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
-      <RouterProvider router={rotas} />
-    </>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/restaurant/:id" element={<RestaurantDetail />} />
+        </Routes>
+      </Router>
+    </Provider>
   )
 }
 
