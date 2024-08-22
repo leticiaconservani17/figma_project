@@ -1,0 +1,11 @@
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    },
+    { "src": "db.json", "use": "@vercel/node" }
+  ],
+  "routes": [{ "src": "/src/services/(.*)", "dest": "/db.json" }]
+}
