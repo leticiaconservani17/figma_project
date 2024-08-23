@@ -27,13 +27,18 @@ const RestaurantPage: React.FC = () => {
     if (restaurantId !== null) {
       setIsLoading(true)
       fetch(`${API_URL}/restaurants/${restaurantId}`)
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch restaurant')
+          }
+          return res.json()
+        })
         .then((data) => {
           setRestaurant(data)
           setIsLoading(false)
         })
         .catch((error) => {
-          console.error('Erro ao buscar o restaurante:', error)
+          console.error('Erro ao buscar o restaurante:', error.message)
           setIsLoading(false)
         })
     }
@@ -70,45 +75,44 @@ const RestaurantPage: React.FC = () => {
   return (
     <S.Container>
       {restaurant?.menu && restaurant.menu.length > 0 ? (
-        <S.HeadContent>
-          <S.Image src={restaurant?.image} alt={restaurant?.title} />
-          <S.Image src={restaurant?.image} alt={restaurant?.title} />
-          <S.Overlay />
-          <S.TextContainer>
-            <S.Type>{restaurant?.type}</S.Type>
-            <S.Title>{restaurant?.title}</S.Title>
-          </S.TextContainer>
-        </S.HeadContent>
+        <>
+          <S.HeadContent>
+            <S.Image src={restaurant?.image} alt={restaurant?.title} />
+            <S.Overlay />
+            <S.TextContainer>
+              <S.Type>{restaurant?.type}</S.Type>
+              <S.Title>{restaurant?.title}</S.Title>
+            </S.TextContainer>
+          </S.HeadContent>
+          <S.PageContent>
+            <S.Menu>
+              <S.MenuItem>
+                {restaurant.menu.map((item) => (
+                  <li key={item.name}>
+                    <S.ItemContainer>
+                      <S.IMG src={item.productImage} alt={item.name} />
+                      <S.ItemDetails>
+                        <S.MenuTitle>{item.name}</S.MenuTitle>
+                        <S.MenuDescription>
+                          {item.description}
+                        </S.MenuDescription>
+                        <S.Button onClick={() => OpenModal(item)}>
+                          Mais detalhes
+                        </S.Button>
+                      </S.ItemDetails>
+                    </S.ItemContainer>
+                  </li>
+                ))}
+              </S.MenuItem>
+            </S.Menu>
+          </S.PageContent>
+        </>
       ) : (
-        <S.HeadContent className="noDisplay"></S.HeadContent>
+        <S.NoMenuMessage color="#e66767">
+          Este restaurante ainda não possui um cardápio.
+        </S.NoMenuMessage>
       )}
 
-      <S.PageContent>
-        {restaurant?.menu && restaurant.menu.length > 0 ? (
-          <S.Menu>
-            <S.MenuItem>
-              {restaurant.menu.map((item) => (
-                <li key={item.name}>
-                  <S.ItemContainer>
-                    <S.IMG src={item.productImage} alt={item.name} />
-                    <S.ItemDetails>
-                      <S.MenuTitle>{item.name}</S.MenuTitle>
-                      <S.MenuDescription>{item.description}</S.MenuDescription>
-                      <S.Button onClick={() => OpenModal(item)}>
-                        Mais detalhes
-                      </S.Button>
-                    </S.ItemDetails>
-                  </S.ItemContainer>
-                </li>
-              ))}
-            </S.MenuItem>
-          </S.Menu>
-        ) : (
-          <S.NoMenuMessage color="#e66767">
-            Este restaurante ainda não possui um cardápio.
-          </S.NoMenuMessage>
-        )}
-      </S.PageContent>
       {openModal && selectedItem && (
         <S.Modal className={openModal ? 'visible' : ''} key={selectedItem.name}>
           <div className="container">
