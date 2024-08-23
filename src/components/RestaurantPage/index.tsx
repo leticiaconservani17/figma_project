@@ -21,7 +21,7 @@ const RestaurantPage: React.FC = () => {
   const API_URL =
     process.env.NODE_ENV === 'production'
       ? process.env.REACT_APP_API_URL
-      : 'http://localhost:3001'
+      : 'https://project-figma-data.onrender.com'
 
   useEffect(() => {
     if (restaurantId !== null) {
