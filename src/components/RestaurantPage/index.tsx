@@ -18,10 +18,12 @@ const RestaurantPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const restaurantId = id ? parseInt(id) : null
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
+
   useEffect(() => {
     if (restaurantId !== null) {
       setIsLoading(true)
-      fetch(`http://localhost:3001/restaurants/${restaurantId}`)
+      fetch(`${API_URL}/restaurants/${restaurantId}`)
         .then((res) => res.json())
         .then((data) => {
           setRestaurant(data)
@@ -65,6 +67,11 @@ const RestaurantPage: React.FC = () => {
   return (
     <S.Container>
       <S.HeadContent>
+        {restaurant?.menu && restaurant.menu.length > 0 ? (
+          <S.Image src={restaurant?.image} alt={restaurant?.title} />
+        ) : (
+          ''
+        )}
         <S.Image src={restaurant?.image} alt={restaurant?.title} />
         <S.Overlay />
         <S.TextContainer>
