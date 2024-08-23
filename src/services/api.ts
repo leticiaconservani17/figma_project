@@ -38,7 +38,7 @@ type PurchaseResponse = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api'
+    baseUrl: 'https://project-figma-data.onrender.com'
   }),
   endpoints: (builder) => ({
     getRestaurants: builder.query<Restaurant[], void>({
