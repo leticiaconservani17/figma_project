@@ -69,23 +69,20 @@ const RestaurantPage: React.FC = () => {
 
   return (
     <S.Container>
-      <S.HeadContent>
-        {restaurant?.menu && restaurant.menu.length > 0 ? (
-          <S.Image
-            className="display"
-            src={restaurant?.image}
-            alt={restaurant?.title}
-          />
-        ) : (
+      {restaurant?.menu && restaurant.menu.length > 0 ? (
+        <S.HeadContent>
           <S.Image src={restaurant?.image} alt={restaurant?.title} />
-        )}
-        <S.Image src={restaurant?.image} alt={restaurant?.title} />
-        <S.Overlay />
-        <S.TextContainer>
-          <S.Type>{restaurant?.type}</S.Type>
-          <S.Title>{restaurant?.title}</S.Title>
-        </S.TextContainer>
-      </S.HeadContent>
+          <S.Image src={restaurant?.image} alt={restaurant?.title} />
+          <S.Overlay />
+          <S.TextContainer>
+            <S.Type>{restaurant?.type}</S.Type>
+            <S.Title>{restaurant?.title}</S.Title>
+          </S.TextContainer>
+        </S.HeadContent>
+      ) : (
+        <S.HeadContent className="noDisplay"></S.HeadContent>
+      )}
+
       <S.PageContent>
         {restaurant?.menu && restaurant.menu.length > 0 ? (
           <S.Menu>
