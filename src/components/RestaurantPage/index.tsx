@@ -18,7 +18,10 @@ const RestaurantPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const restaurantId = id ? parseInt(id) : null
 
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
+  const API_URL =
+    process.env.NODE_ENV === 'production'
+      ? process.env.REACT_APP_API_URL
+      : 'http://localhost:3001'
 
   useEffect(() => {
     if (restaurantId !== null) {
@@ -68,9 +71,13 @@ const RestaurantPage: React.FC = () => {
     <S.Container>
       <S.HeadContent>
         {restaurant?.menu && restaurant.menu.length > 0 ? (
-          <S.Image src={restaurant?.image} alt={restaurant?.title} />
+          <S.Image
+            className="display"
+            src={restaurant?.image}
+            alt={restaurant?.title}
+          />
         ) : (
-          ''
+          <S.Image src={restaurant?.image} alt={restaurant?.title} />
         )}
         <S.Image src={restaurant?.image} alt={restaurant?.title} />
         <S.Overlay />

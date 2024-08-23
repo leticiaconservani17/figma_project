@@ -16,6 +16,11 @@ export const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: none;
+
+  &.display {
+    display: block;
+  }
 `
 
 export const Overlay = styled.div`
