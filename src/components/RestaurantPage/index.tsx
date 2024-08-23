@@ -34,7 +34,7 @@ const RestaurantPage: React.FC = () => {
           setIsLoading(false)
         })
     }
-  }, [restaurantId])
+  }, [restaurantId, API_URL])
 
   const OpenModal = (item: Restaurant['menu'][0]) => {
     setSelectedItem(item)
