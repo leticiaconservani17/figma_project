@@ -292,7 +292,7 @@ export const Modal = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.18);
+    background-color: rgba(0, 0, 0, 0.7);
     pointer-events: none;
   }
 
@@ -302,7 +302,7 @@ export const Modal = styled.div`
     display: flex;
     background-color: #e66767;
     color: #ffebd9;
-    width: 82%;
+    width: 1024px;
     padding: 20px;
 
     div {
